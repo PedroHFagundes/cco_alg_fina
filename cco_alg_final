@@ -1,0 +1,38 @@
+# cco_alg_fina
+Trabalho final , 1 semestre algoritimo
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+#include <string.h>
+
+int main(){
+    double x;
+    double y;
+    double z;
+    float pi;
+    long int pQua;
+    long int pCircu;
+
+        printf("Digite a quantidade de pontos que ira ter no quadrado: ");
+        scanf("%i", &pQua);
+
+
+    int cont;
+    srand(time(NULL));
+    for(cont =0;cont < pQua;cont++){
+        x = (double)rand() / RAND_MAX;
+        y = (double)rand() / RAND_MAX;
+            z = sqrt((x * x) + (y * y));
+        if(z <= 1){
+            pCircu++;
+        }
+    }
+
+    pi = (double)pCircu / pQua * 4;
+    printf("O valor aproximando de PI eh: %.14f", pi);
+
+return 0;
+}
+
