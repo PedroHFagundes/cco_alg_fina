@@ -1,38 +1,57 @@
-# cco_alg_fina
-Trabalho final , 1 semestre algoritimo
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include <string.h>
+#define TAM 10000
 
-int main(){
-    double x;
-    double y;
-    double z;
+typedef struct{
+    long int pQuad;
+    float pCirc;
+    float x;
+    float y;
+    float distanciaeixo;
+    float deltax;
+    float deltay;
     float pi;
-    long int pQua;
-    long int pCircu;
+}PI;
 
-        printf("Digite a quantidade de pontos que ira ter no quadrado: ");
-        scanf("%i", &pQua);
+PI* repeticao(){
+PI *pi = (PI*) malloc(TAM * sizeof(PI));
 
-
-    int cont;
+    printf("Digite o maximo de pontos que tera no quadrado: ");
+    scanf("%i", &pi->pQuad);
+    
     srand(time(NULL));
-    for(cont =0;cont < pQua;cont++){
-        x = (double)rand() / RAND_MAX;
-        y = (double)rand() / RAND_MAX;
-            z = sqrt((x * x) + (y * y));
-        if(z <= 1){
-            pCircu++;
-        }
-    }
-
-    pi = (double)pCircu / pQua * 4;
-    printf("O valor aproximando de PI eh: %.14f", pi);
-
-return 0;
+        for(int cont = 0; cont < pi->pQuad;cont++){
+        
+                pi->x = rand()  / (float)RAND_MAX;
+                pi->y = rand()  / (float)RAND_MAX;
+                
+                    if(pi->x < 0){
+                        pi->x * (-1);
+                    }
+                    if(pi->y < 0){
+                        pi->y * (-1);
+                    }
+                    
+                pi->deltax = pow((pi->x - 0.5),2);
+                pi->deltay = pow((pi->y - 0.5),2);
+                
+                    pi->distanciaeixo = sqrt(pi->deltax + pi->deltay);
+                    if(pi->distanciaeixo < 0.5){
+                        pi->pCirc = pi->pCirc + 1;
+                }
+            }
+            
+        pi->pi = 4 * (pi->pCirc / pi->pQuad);
+            printf("x = %.14f", pi->pi);
+printf("\n");
+    return pi;
 }
+
+void main(PI ponteiro){
+    repeticao(ponteiro);
+}
+
+
 
